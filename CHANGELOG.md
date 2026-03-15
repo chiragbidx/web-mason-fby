@@ -12,3 +12,7 @@
 - Updated landing composition in `app/page.tsx` for new generator section.
 - Improved OpenAI API helper for Edge/Node compatibility.
 - Requires `OPENAI_API_KEY` in env for generation.
+
+## 2024-06-10 Landing Simplified: Generator Only
+- Landing page updated to show ONLY the AI image generator—removed all other sections for minimal user experience.
+- Updated `app/page.tsx` to include only `<LayoutImageGeneratorSection />`.
