@@ -1,55 +1,13 @@
-// Server Component: keep layout/content server-rendered; sections are data-driven.
-import { LayoutBenefitsSection } from "../components/home/LayoutBenefitsSection";
-import { LayoutContactSection } from "../components/home/LayoutContactSection";
-import { LayoutFaqSection } from "../components/home/LayoutFaqSection";
-import { LayoutFeatureGridSection } from "../components/home/LayoutFeatureGridSection";
-import { LayoutFooterSection } from "../components/home/LayoutFooterSection";
-import { LayoutHeroSection } from "../components/home/LayoutHeroSection";
-import { LayoutPricingSection } from "../components/home/LayoutPricingSection";
-import { LayoutServicesSection } from "../components/home/LayoutServicesSection";
-import { LayoutSponsorsSection } from "../components/home/LayoutSponsorsSection";
-import { LayoutTeamSection } from "../components/home/LayoutTeamSection";
-import { LayoutTestimonialSection } from "../components/home/LayoutTestimonialSection";
+// Server Component: landing now only shows the AI image generator section.
 import LayoutImageGeneratorSection from "../components/home/LayoutImageGeneratorSection";
 import { Navbar as LayoutNavbar } from "@/components/layout/navbar";
 
 export default function Home() {
-  // Simple toggles so agents/users can hide sections without touching JSX.
-  // Use ONLY_SECTIONS (comma list) to whitelist, or HIDE_SECTIONS to blacklist.
-  const only = (process.env.ONLY_SECTIONS ?? "")
-    .split(",")
-    .map((s) => s.trim().toLowerCase())
-    .filter(Boolean);
-  const envHide = (process.env.HIDE_SECTIONS ?? "")
-    .split(",")
-    .map((s) => s.trim().toLowerCase())
-    .filter(Boolean);
-  const defaultHide: string[] = [];
-  const whitelist = only.length ? new Set(only) : null;
-  const hide = new Set(whitelist ? envHide : [...defaultHide, ...envHide]);
-  const sections = [
-    ["layout-hero", <LayoutHeroSection key="layout-hero" />],
-    ["layout-sponsors", <LayoutSponsorsSection key="layout-sponsors" />],
-    ["layout-benefits", <LayoutBenefitsSection key="layout-benefits" />],
-    ["layout-features", <LayoutFeatureGridSection key="layout-features" />],
-    ["layout-image-generator", <LayoutImageGeneratorSection key="layout-image-generator" />],
-    ["layout-services", <LayoutServicesSection key="layout-services" />],
-    ["layout-testimonials", <LayoutTestimonialSection key="layout-testimonials" />],
-    ["layout-team", <LayoutTeamSection key="layout-team" />],
-    ["layout-pricing", <LayoutPricingSection key="layout-pricing" />],
-    ["layout-contact", <LayoutContactSection key="layout-contact" />],
-    ["layout-faq", <LayoutFaqSection key="layout-faq" />],
-    ["layout-footer", <LayoutFooterSection key="layout-footer" />],
-  ] as const;
-  const visibleSections = sections
-    .filter(([id]) => (whitelist ? whitelist.has(id) : true))
-    .filter(([id]) => !hide.has(id));
-
   return (
     <div className="home-dark min-h-screen bg-gradient-to-b from-zinc-50 via-white to-[#ffe6d8] text-zinc-900 transition-colors dark:from-[#120d0b] dark:via-[#16100d] dark:to-[#1f1612] dark:text-[#f7efe8]">
       <LayoutNavbar />
       <main className="flex min-h-screen w-full flex-col gap-12 px-6 py-12 sm:px-10 lg:px-16 lg:max-w-[1600px] lg:mx-auto">
-        {visibleSections.map(([, node]) => node)}
+        <LayoutImageGeneratorSection />
       </main>
 
       {/* lightweight animations defined locally to avoid tailwind config changes */}
