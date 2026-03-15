@@ -10,6 +10,7 @@ import { LayoutServicesSection } from "../components/home/LayoutServicesSection"
 import { LayoutSponsorsSection } from "../components/home/LayoutSponsorsSection";
 import { LayoutTeamSection } from "../components/home/LayoutTeamSection";
 import { LayoutTestimonialSection } from "../components/home/LayoutTestimonialSection";
+import LayoutImageGeneratorSection from "../components/home/LayoutImageGeneratorSection";
 import { Navbar as LayoutNavbar } from "@/components/layout/navbar";
 
 export default function Home() {
@@ -31,6 +32,7 @@ export default function Home() {
     ["layout-sponsors", <LayoutSponsorsSection key="layout-sponsors" />],
     ["layout-benefits", <LayoutBenefitsSection key="layout-benefits" />],
     ["layout-features", <LayoutFeatureGridSection key="layout-features" />],
+    ["layout-image-generator", <LayoutImageGeneratorSection key="layout-image-generator" />],
     ["layout-services", <LayoutServicesSection key="layout-services" />],
     ["layout-testimonials", <LayoutTestimonialSection key="layout-testimonials" />],
     ["layout-team", <LayoutTeamSection key="layout-team" />],
