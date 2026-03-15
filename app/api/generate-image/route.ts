@@ -25,8 +25,9 @@ export async function POST(req: NextRequest) {
       size: "1024x1024",
     });
 
+    // OpenAI returns: { data: Array<{ url?: string, ... }> }
     const urls: string[] =
-      (response.data?.map((obj: { url: string }) => obj.url).filter(Boolean)) ?? [];
+      (response.data?.map((obj: { url?: string }) => obj.url).filter((u): u is string => typeof u === "string" && !!u)) ?? [];
 
     if (urls.length === 0) {
       return NextResponse.json(
